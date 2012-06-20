@@ -1,4 +1,7 @@
 {
-	"filepath":"/Users/kuna/work/nadoka/log",
-	"channels":{"muscle": {"dir":"fukunaga-CS-muscle" }}
+	"filepath":"nadoka/log/path",
+	"channels":{
+		"channel_name0": {"dir":"path_from_nadoka_log_path0" },
+		"channel_name1": {"dir":"path_from_nadoka_log_path1" }
+	}
 }
