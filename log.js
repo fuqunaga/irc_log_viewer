@@ -1,8 +1,6 @@
 var config = require('./config.json');
 var fs = require('fs');
 var path = require('path');
-var Iconv = require('iconv').Iconv
-  , iconv = new Iconv( 'iso-2022-jp', 'UTF-8');
 
 function get_dir(channel)
 {
@@ -39,8 +37,7 @@ exports.get_channel = function(channel, date)
 		var idx = dates.indexOf(date);
 		idx = (idx>=0) ? idx : dates.length-1;
 		
-		msgs_raw = fs.readFileSync(path.join(get_dir(channel), dates[idx]+".log"));
-		msgs_utf = iconv.convert(msgs_raw).toString('utf8').split('\n');
+		msgs_utf = fs.readFileSync(path.join(get_dir(channel), dates[idx]+".log"), 'utf8').split('\n');
 
 		// メッセージ的なやつだけ抽出
 		// ng: 22:59:00 +kuna
