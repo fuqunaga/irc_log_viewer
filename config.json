@@ -3,5 +3,8 @@
 	"channels":{
 		"channel_name0": {"dir":"path_from_nadoka_log_path0" },
 		"channel_name1": {"dir":"path_from_nadoka_log_path1" }
+	},
+	"hide_channels":{
+		"no_topbar_channel": {"dir":"path_from_nadoka_log_path2" }
 	}
 }

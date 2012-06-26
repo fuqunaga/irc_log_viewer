@@ -4,7 +4,8 @@ var path = require('path');
 
 function get_dir(channel)
 {
-	return path.join(config.filepath, config.channels[channel].dir);
+	var data = config.channels[channel] || config.hide_channels[channel];
+	return path.join(config.filepath, data.dir);
 }
 function get_dates(channel)
 {
@@ -21,6 +22,7 @@ function get_dates(channel)
 			dates.push(file_names[i].split('.')[0]);
 		}
 	}
+	dates.sort();
 	return dates;
 }
 exports.get_latest_date = function(channel)
