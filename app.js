@@ -28,17 +28,9 @@ app.configure('production', function(){
 
 
 // Routes
-app.get('/', function(req,res){
-	res.redirect('/view');
-});
-app.get('/view', function(req,res){
-	res.redirect('/view/'+ Object.keys(config.channels)[0]);
-});
-app.get('/view/:channel', function(req,res){
-	res.redirect('/view/'+req.params.channel+'/'+log.get_latest_date(req.params.channel));
-});
-app.get('/view/:channel/:date', function(req,res){
-	var data = log.get_channel(req.params.channel, req.params.date);
+function render_log(res, channel, date)
+{
+	var data = log.get_channel(channel, date);
 	if ( data.dates.length ){
 		bar_channels = [];
 		for(var name in config.channels) bar_channels.push(name);
@@ -59,12 +51,27 @@ app.get('/view/:channel/:date', function(req,res){
 
 		res.render('index', { 
 			bar_channels: bar_channels,
-			channel: req.params.channel,
+			channel: channel,
 			dates: dates,
-			current_date: req.params.date,
+			current_date: date,
 			msgs: data.msgs
 		});
 	}
+}
+app.get('/', function(req,res){
+	res.redirect('/view');
+});
+app.get('/view', function(req,res){
+	res.redirect('/view/'+ Object.keys(config.channels)[0]);
+});
+app.get('/view/:channel', function(req,res){
+	res.redirect('/view/'+req.params.channel+'/latest');
+});
+app.get('/view/:channel/latest', function(req,res){
+	render_log(res, req.params.channel, log.get_latest_date(req.params.channel));
+});
+app.get('/view/:channel/:date', function(req,res){
+	render_log(res, req.params.channel, req.params.date);
 });
 
 app.listen(3000, function(){

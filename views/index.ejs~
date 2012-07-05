@@ -67,11 +67,11 @@
 			<div class="hero-unit">
 				<% var rex_url = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=#~]*)?/; %>
 				<% for(var i=0; i<msgs.length; i++) {%>
+					<%= msgs[i].type %>
 					<span class="time"><%= msgs[i].time %></span>
 					<span class="name"><%= msgs[i].name %>:</span>
 
 					<span class="<%= msgs[i].type %>">
-						<% var msg = msgs[i].msg; %>
 						<% while(rex_url.test(msg)) { %>
 							<%= RegExp.leftContext %>
 							<a href="<%- RegExp.lastMatch %>">

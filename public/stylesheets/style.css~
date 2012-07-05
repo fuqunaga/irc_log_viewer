@@ -7,4 +7,4 @@ body {
 }
 .time { color: #048; }
 .name { color: #008; }
-.NOTICE { color: #888; }
+.NOTICE { color: #008; }
