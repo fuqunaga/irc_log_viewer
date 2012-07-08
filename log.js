@@ -47,8 +47,8 @@ exports.get_channel = function(channel, date)
 		// ok: 22:59:00 {kuna} NOTICEメッセージ
 		// time,name,msg にパース
 		var regs = {
-			"PRIVMSG": /^(\d+:\d+:\d+)\s+<(.*)>\s(.*)/,
-			"NOTICE": /^(\d+:\d+:\d+)\s+{(.*)}\s(.*)/
+			"PRIVMSG": /^(\d+:\d+:\d+)\s+<(.+?)>\s(.*)/,
+			"NOTICE": /^(\d+:\d+:\d+)\s+{(.+?)}\s(.*)/
 		};
 		for(var i=0; i<msgs_utf.length; i++)
 		{
