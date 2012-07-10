@@ -65,7 +65,7 @@
 		</div><!--/span-->
 		<div class="span9">
 			<div class="hero-unit">
-				<% var rex_url = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=#~]*)?/; %>
+				<% var rex_url = /(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)/; %>
 				<% for(var i=0; i<msgs.length; i++) {%>
 					<span class="time"><%= msgs[i].time %></span>
 					<span class="name"><%= msgs[i].name %>:</span>
@@ -73,11 +73,12 @@
 					<span class="<%= msgs[i].type %>">
 						<% var msg = msgs[i].msg; %>
 						<% while(rex_url.test(msg)) { %>
-							<%= RegExp.leftContext %>
-							<a href="<%- RegExp.lastMatch %>">
-								<%- RegExp.lastMatch %>
+							<% var match = RegExp.lastMatch; var left = RegExp.leftContext; var right = RegExp.rightContext; %>
+							<%= left %>
+							<a href="<%- match %>">
+								<%= match %>
 							</a>
-							<% msg = RegExp.rightContext; %>
+							<% msg = right; %>
 						<% } %>
 						<%= msg %>
 					</span>
@@ -91,7 +92,7 @@
 
 	<!--
 	<footer>
-	<p>© Company 2012</p>
+	<p>c Company 2012</p>
 	</footer>
 	-->
 
